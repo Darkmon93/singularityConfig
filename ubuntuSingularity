@@ -12,4 +12,3 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     sed -i 's/$/ universe/' /etc/apt/sources.list
     apt-get -y --force-yes install vim
 	apt-get -y --force-yes install libunwind8 icu-devtools
-	apt-get install -y --force-yes mssql-server
