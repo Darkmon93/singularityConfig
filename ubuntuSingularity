@@ -11,4 +11,8 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
     echo "Hello from inside the container"
     sed -i 's/$/ universe/' /etc/apt/sources.list
     apt-get -y --force-yes install vim
-	apt-get -y --force-yes install libunwind8 icu-devtools
+	apt-get -y --force-yes install libunwind8 icu-devtools curl wget tee
+	curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+	add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
+	apt-get install -y --force-yes mssql-server
+	curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
