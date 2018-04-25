@@ -1,24 +1,9 @@
-BootStrap: debootstrap
-OSVersion: xenial
-MirrorURL: http://us.archive.ubuntu.com/ubuntu/
-
+BootStrap: docker
+From: mssql-server-linux:latest   # This is a comment
 
 %runscript
     echo "This is what happens when you run the container..."
 
-
 %post
     echo "Hello from inside the container"
-    sed -i 's/$/ universe/' /etc/apt/sources.list
-	apt-get -y --force-yes install vim libunwind8 icu-devtools curl wget software-properties-common apt-transport-https ca-certificates sudo
-	curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-	add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
-	apt-get update
-	apt-get install -y --force-yes mssql-server
-	service dbus start
-	MSSQL_SA_PASSWORD='Rf8iyzhg.' MSSQL_PID='Evaluation' /opt/mssql/bin/mssql-conf -n setup accept-eula
-	curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
-	apt-get update
-	ACCEPT_EULA=Y apt-get install -y --force-yes mssql-tools unixodbc-dev
-	echo PATH="$PATH:/opt/mssql-tools/bin" >> ~/.bash_profile
-	echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+    echo "Install additional software here"
