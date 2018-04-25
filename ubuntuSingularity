@@ -15,6 +15,7 @@ MirrorURL: http://us.archive.ubuntu.com/ubuntu/
 	add-apt-repository "$(wget -qO- https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list)"
 	apt-get update
 	apt-get install -y --force-yes mssql-server
+	service dbus start
 	systemctl restart mssql-server.service
 	MSSQL_SA_PASSWORD='Rf8iyzhg.' MSSQL_PID='Evaluation' /opt/mssql/bin/mssql-conf -n setup accept-eula
 	curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/msprod.list
